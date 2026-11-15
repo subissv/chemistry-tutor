@@ -13,7 +13,7 @@ set_site_information(
     description = "Help solve simple chemistry problems",
     sources = "Thanks to the Drafter docs",
     planning = [],
-    links = []
+    links = ["https://github.com/subissv/chemistry-tutor"]
 )
 
 hide_debug_information()
