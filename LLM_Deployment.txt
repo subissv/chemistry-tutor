@@ -1,0 +1,99 @@
+Skip to content
+subissv
+chemistry-tutor
+Repository navigation
+Code
+Issues
+Pull requests
+Agents
+Actions
+Projects
+Wiki
+Security and quality
+Deploy main branch as website
+Deploy main branch as website #3
+All jobs
+Run details
+Annotations
+1 error, 2 warnings, and 1 notice
+build
+failed now in 12s
+Search logs
+2s
+1s
+2s
+0s
+0s
+2s
+0s
+Run set -euo pipefail
+Drafter v2 deployment build
+Repository: subissv/chemistry-tutor
+Run: https://github.com/subissv/chemistry-tutor/actions/runs/43743909872
+Entry file: main.py
+
+Command: uvx --from drafter\>=2\,\<3 drafter main.py --compile --output-directory _site --production --additional-paths CS1\ Final\ Project\ 1_\ Design.pdf --additional-paths Copy\ of\ CS1\ Final\ Project\ 0_\ Pick\ a\ Problem\ \(1\).pdf --additional-paths README.md --external-pages dashboard/\ Dashboard --external-pages https://github.com/subissv/chemistry-tutor\ Repository
+
+Installed 39 packages in 29ms
+Traceback (most recent call last):
+  File "/home/runner/work/_temp/setup-uv-cache/archive-v0/jLnK7rBzdDalW3Uq/bin/drafter", line 12, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/_temp/setup-uv-cache/archive-v0/jLnK7rBzdDalW3Uq/lib/python3.12/site-packages/drafter/cli.py", line 34, in main
+    run_path(system.bootstrap.path, run_name="__main__")
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "main.py", line 1, in <module>
+    from chempy import *
+ModuleNotFoundError: No module named 'chempy'
+Error: Process completed with exit code 1.
+0s
+0s
+0s
+0s
+0s
+0s
+0s
+0s
+0s
+0s
+…
+This time, we've identified the next issue:
+
+ModuleNotFoundError: No module named 'chempy'
+Your deployment is now reaching the Drafter build step, but the temporary Python environment used to compile your website doesn't have ChemPy installed.
+
+This is a dependency issue, not an error in your chemistry calculations.
+
+Fix: add a requirements.txt file
+Your workflow already checks for a requirements.txt file and installs the packages listed in it. We can use that instead of changing the workflow again.
+
+Go to the main page of your GitHub repository (the same folder where main.py is located).
+
+Click Add file → Create new file.
+
+Name the file exactly:
+
+requirements.txt
+
+Paste this into the file:
+
+chempy
+bakery
+5. Click Commit changes and commit it to main.
+
+Why these two packages?
+
+chempy is needed for your chemical formulas, molar masses, and stoichiometry calculations.
+
+bakery is needed for your assert_equal testing function.
+
+You don't need to add drafter because your existing workflow installs Drafter separately.
+
+Then rerun deployment
+Go to Actions → Deploy main branch as website → Run workflow.
+
+The workflow should now install ChemPy and Bakery before compiling main.py.
+
+If it fails again, send me the new error. We're narrowing down the deployment issues one at a time.
