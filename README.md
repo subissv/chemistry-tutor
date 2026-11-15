@@ -1,2 +1,2 @@
-# drafter-deployment-template-v1
+# drafter-deployment-chemistry_tutor
 Your first Drafter website!
