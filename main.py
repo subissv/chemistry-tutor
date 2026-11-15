@@ -14,8 +14,6 @@ set_site_information(
     sources = "Thanks to the Drafter docs",
     planning = [],
     links = []
-
-
 )
 
 hide_debug_information()
